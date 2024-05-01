@@ -7,9 +7,18 @@ const getFiles = async ()=>{
     return [indexHtml,indexJs]
 }
 
-
 http.createServer(async ({ url }, res) => {
     const [indexHtml, indexJs] = await getFiles()
+    if (url.includes('form')) {
+        const data = url.match(/[a-zA-Z]+|[0-9]{4}-[0-9]{2}-[0-9]{2}/g)
+        data.shift()
+        const stringify = JSON.stringify(data)
+        const buffer = Buffer.from(stringify)
+        res.writeHead(200, {"Content-Type": "application/json"})
+        res.write(buffer);
+        res.end();      
+        return 
+    }
     switch(url) {
         case '/':
             res.writeHead(200, {"Content-Type": "text/html"})

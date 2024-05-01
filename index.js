@@ -5,4 +5,4 @@ import { App } from "./src/App";
 const root = document.getElementById('root')
 const reactDom = createRoot(root)
 
-reactDom.render(<App/>)
+reactDom.render(<App />)
