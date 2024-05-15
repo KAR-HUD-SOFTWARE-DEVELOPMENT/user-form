@@ -16,7 +16,8 @@ export const Form = ({ addUser }) => {
         const stringify = JSON.stringify(data)
         const fetching = await fetch(`http://localhost:8008/form?${stringify}`)
         const json = await fetching.json()
-        addUser(json)
+        const jsonparse = JSON.parse(json)
+        addUser(jsonparse)
         setIsFormComplete(false)
     }
 
@@ -33,28 +34,28 @@ export const Form = ({ addUser }) => {
         <form onSubmit={handleSubmit(Submit)}>
             <label>
                 Name:
-                <input type="text" {...register("name", {required: true})}/>
+                <input type="text" name="name"{...register("name", {required: true})}/>
             </label>
             <label>
                 Surname:
-                <input type="text" {...register("surname", {required: true})}/>
+                <input type="text" name="surname" {...register("surname", {required: true})}/>
             </label>
             <label>
                 City:
-                <input type="text" {...register("city", {required: true})}/>
+                <input type="text" name="city" {...register("city", {required: true})}/>
             </label>
             <label>
                 Birth date:
-                <input type="date" {...register("birthdate", {required: true})}/>
+                <input type="date" name="birthdate" {...register("birthdate", {required: true})}/>
             </label>
             <label>
                 Gender:
                 <div>
                     <label>
-                        Male <input type="radio" value={"male"} {...register("gender", {required: true})}/> 
+                        Male <input type="radio" name="male" value={"male"} {...register("gender", {required: true})}/> 
                     </label>
                    <label>
-                        Female <input type="radio" value={"female"} {...register("gender", {required: true})}/> 
+                        Female <input type="radio" name="female" value={"female"} {...register("gender", {required: true})}/> 
                    </label>
                 </div>
             </label>

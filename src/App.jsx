@@ -7,7 +7,7 @@ export const App = () => {
     const [showForm, setShowForm] = useState(false)
 
     const addUser = (newUser) => {
-        setUsers([...users, newUser])
+        setUsers([...users, ...newUser])
     }
 
     if (!showForm) {
@@ -22,11 +22,11 @@ export const App = () => {
                 <ol>
                     {users.map((user, index) => (
                         <li key={index}>
-                            {user[1]} {user[3]}
+                            {user.name} {user.surname}
                             <ul>
-                                <li>{user[4]}: {user[5]}</li>
-                                <li>{user[6]}: {user[7]}</li>
-                                <li>{user[8]}: {user[9]}</li>
+                                <li>{Object.keys(user)[2]}: {user.city}</li>
+                                <li>{Object.keys(user)[3]}: {user.birthdate}</li>
+                                <li>{Object.keys(user)[4]}: {user.gender}</li>
                             </ul>
                         </li>
                     ))}
